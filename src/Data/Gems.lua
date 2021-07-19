@@ -7235,6 +7235,23 @@ return {
 		reqInt = 100,
 		defaultLevel = 20,
 	},
+	["Metadata/Items/Gems/SkillGemForbiddenRite"] = {
+		name = "Forbidden Rite",
+		grantedEffectId = "ForbiddenRite",
+		tags = {
+			intelligence = true,
+			active_skill = true,
+			spell = true,
+			area = true,
+			chaos = true,
+			projectile = true,
+		},
+		tagString = "Spell, AoE, Chaos, Projectile",
+		reqStr = 0,
+		reqDex = 0,
+		reqInt = 100,
+		defaultLevel = 20,
+	},
 	["Metadata/Items/Gems/SkillGemVoidSphere"] = {
 		name = "Void Sphere",
 		grantedEffectId = "BlackHole",
