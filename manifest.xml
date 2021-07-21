@@ -419,4 +419,8 @@
 	<File name="TreeData/3_14/groups-3.png" part="tree" sha1="fe91708e0c16dc1bab7ee3f436914ef7201df9c9" />
 	<File name="TreeData/3_14/skills-3.jpg" part="tree" sha1="bcb605cce06852fb5a6961369229afe4a6bdff0f" />
 	<File name="TreeData/3_14/skills-disabled-3.jpg" part="tree" sha1="1f8841f20d25396f0a4b9ae2e5ba7ce28036ac45" />
+	<File name="TreeData/3_15/tree.lua" part="tree" sha1="" />
+	<File name="TreeData/3_15/groups-3.png" part="tree" sha1="" />
+	<File name="TreeData/3_15/skills-3.jpg" part="tree" sha1="" />
+	<File name="TreeData/3_15/skills-disabled-3.jpg" part="tree" sha1="" />
 </PoBVersion>
