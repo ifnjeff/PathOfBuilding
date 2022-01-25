@@ -382,6 +382,61 @@ do
 	end
 end
 
+function copySafe(value, noRecurse, preserveMeta)
+	if type(value) == "table" then
+		return copyTableSafe(value, noRecurse, preserveMeta)
+	end
+	return value
+end
+
+function rebaseImpl(source, base, subTableMap)
+	if type(source) ~= "table" then
+		return source
+	end
+	subTableMap[source] = { rebased = source, base = base }
+	if type(base) ~= "table" then
+		for k, v in pairs(source) do
+			if subTableMap[v] ~= nil then
+				source[k] = subTableMap[v].rebased
+			else
+				rebaseImpl(v, nil, subTableMap)
+			end
+		end
+		return source
+	end
+	local changed = false
+	for k, v in pairs(source) do
+		if subTableMap[v] ~= nil then
+			if type(base[k]) ~= "table" or base[k] ~= subTableMap[v].base then
+				changed = true
+			end
+			source[k] = subTableMap[v].rebased
+		else
+			local rebased = rebaseImpl(v, base[k], subTableMap)
+			if base[k] ~= rebased then
+				changed = true
+			end
+			source[k] = rebased
+		end
+	end
+	if not changed and type(base) == "table" then
+		for k, _ in pairs(base) do
+			if source[k] == nil then
+				changed = true
+			end
+		end
+	end
+	if not changed and getmetatable(source) == getmetatable(base) then
+		subTableMap[source].rebased = base
+	end
+	return subTableMap[source].rebased
+end
+
+function rebase(source, base)
+	local subTableMap = { }
+	return rebaseImpl(source, base, subTableMap)
+end
+
 function mergeDB(srcDB, modDB)
 	if modDB then
 		srcDB:AddDB(modDB)
